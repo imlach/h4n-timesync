@@ -1,7 +1,5 @@
 # H4n TimeSync
 
-## Sumamry
-
 Syncs a Deity TC-1 synced h4n in the mic/external input to timecode
 
 This assumes timecode on 4ch...M.wav, and audio on 4ch...I.wav
