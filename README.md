@@ -7,5 +7,8 @@ Defaults to 23.976 FPS, and 48000hz sample rate
 usage: `./timesync.sh <path to h4 directory> <FPS> <SampleRate>`
 
 
-Creates SyncedTC/ subdirectory of all the modified *I.wav files
+Creates SyncedTC/ subdirectory of all the metadata-modified 4CH...I.wav files for easy sync-ing in Davinci Resolve
+
+
+
 Depends on ltctools (ltcdump) and BWFMetaEdit CLI tool (currently a hard coded path)
