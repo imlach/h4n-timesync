@@ -11,7 +11,7 @@ wavs=$(cd $1; find *M.wav)
 for FILE in $wavs
 do
   FILEPATH="$1/$FILE"
-  TCSTR=$(ltcdump -a $FILEPATH -f $FPS  2>/dev/null | head -n1 )
+  TCSTR=$(ltcdump -c 1 -a $FILEPATH -f $FPS  2>/dev/null | head -n1 | grep -v "No LTC" || ltcdump -c 2 -a $FILEPATH -f $FPS  2>/dev/null | head -n1 )
   TC=($TCSTR)
   echo "Processing $FILE - ${TC[2]}"
 
@@ -20,7 +20,10 @@ do
   hours=${tcarr[0]}
   mins=${tcarr[1]}
   secs=${tcarr[2]}
-  frames=${tcarr[3]}
+  frames=$((10#${tcarr[3]}))
+  if [[ $frames -eq "" ]]; then
+      frames=0
+  fi
   
   framesrounded=$(python3 -c "print(round($FPS))")
   totalframes="$((($hours*3600+$mins*60+$secs)*$framesrounded+$frames))"
