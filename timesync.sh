@@ -13,8 +13,13 @@ wavs=$(cd $ABSDIR; find *M.wav)
 for FILE in $wavs
 do
   # Pull the first LTC value out of the mic/external input (connected to TC-1)
+  # This will try the first two LTC frames on either channel to try and get a sync lock.
   FILEPATH="$ABSDIR/$FILE"
-  TCSTR=$(ltcdump -c 1 -a $FILEPATH -f $FPS  2>/dev/null | head -n1 | grep -v "No LTC" || ltcdump -c 2 -a $FILEPATH -f $FPS  2>/dev/null | head -n1 )
+  TCSTR=$(ltcdump -c 1 -a $FILEPATH -f $FPS  2>/dev/null | head -n1 | grep -v "No LTC" || 
+          ltcdump -c 1 -a $FILEPATH -f $FPS  2>/dev/null | head -n2 | tail -n1 | grep -v "No LTC" ||
+          ltcdump -c 2 -a $FILEPATH -f $FPS  2>/dev/null | head -n1 | grep -v "No LTC" ||
+          ltcdump -c 2 -a $FILEPATH -f $FPS  2>/dev/null | head -n2 | tail -n1 
+        )
   TC=($TCSTR)
   echo "Processing $FILE - ${TC[2]}"
   
