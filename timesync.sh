@@ -45,5 +45,7 @@ do
   # Set timecode metadata of the Input stereo file from the TC-1 track
   #TODO: Use path for BWFMetaEdit CLI tool
   /Users/imlach/wksp/BWFMetaEdit/Project/GNU/CLI/bwfmetaedit $ABSDIR/SyncedTC/$extrecording --Timereference=$samples
-  echo "Processed SyncedTC/$extrecording\n\n"
+  echo "Processed SyncedTC/$extrecording"
+  echo ""
+  echo ""
 done
