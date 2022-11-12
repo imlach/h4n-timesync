@@ -25,9 +25,9 @@ do
   
   # Split out timecode into H:M:S:F
   IFS=':' read -a tcarr <<< "${TC[2]}"
-  hours=${tcarr[0]}
-  mins=${tcarr[1]}
-  secs=${tcarr[2]}
+  hours=$((10#${tcarr[0]}))
+  mins=$((10#${tcarr[1]}))
+  secs=$((10#${tcarr[2]}))
   frames=$((10#${tcarr[3]}))
   if [[ $frames -eq "" ]]; then
       frames=0
