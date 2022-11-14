@@ -29,9 +29,6 @@ do
   mins=$((10#${tcarr[1]}))
   secs=$((10#${tcarr[2]}))
   frames=$((10#${tcarr[3]}))
-  if [[ $frames -eq "" ]]; then
-      frames=0
-  fi
   
   # Calculate the number of audio samples since midnight
   framesrounded=$(python3 -c "print(round($FPS))")
